@@ -1,0 +1,8 @@
+{
+  "expo": {
+    "sdkVersion": "24.0.0",
+    "entryPoint": "./native/index.native.js",
+    "name": "DemoApp",
+    "appKey": "EntryPoint"
+  }
+}

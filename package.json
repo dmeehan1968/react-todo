@@ -1,0 +1,84 @@
+{
+  "name": "react-native-web-sketch-boilerplate",
+  "author": "",
+  "license": "ISC",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "dependencies": {
+    "auth0-js": "^8.12.2",
+    "expo": "^24.0.2",
+    "express": "^4.16.2",
+    "react": "^16.0.0",
+    "react-dom": "^16.2.0",
+    "react-native": "^0.51.0",
+    "react-native-web": "^0.3.2",
+    "react-sketchapp": "^1.0.0"
+  },
+  "devDependencies": {
+    "@skpm/builder": "^0.3.1",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-react-native-web": "^0.3.1",
+    "babel-plugin-transform-function-bind": "^6.22.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-flow": "^6.23.0",
+    "canvas-prebuilt": "^1.6.5-prerelease.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint-config-react-native": "^2.0.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-flowtype": "^2.44.0",
+    "eslint-plugin-jest": "^21.7.0",
+    "flow-bin": "^0.65.0",
+    "flow-typed": "^2.3.0",
+    "html-webpack-plugin": "^2.30.1",
+    "husky": "^0.15.0-rc.6",
+    "jest-cli": "^22.1.4",
+    "lint-staged": "^6.1.0",
+    "prop-types": "^15.6.0",
+    "react-hot-loader": "^3.1.3",
+    "react-native-scripts": "^1.9.0",
+    "react-test-renderer": "^16.2.0",
+    "webpack": "^3.10.0",
+    "webpack-dev-middleware": "^2.0.5",
+    "webpack-dev-server": "^2.11.0",
+    "webpack-hot-middleware": "^2.21.0",
+    "webpack-merge": "^4.1.1"
+  },
+  "scripts": {
+    "native:start": "react-native-scripts start",
+    "native:eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "sketch": "skpm-build --watch --run",
+    "sketch:build": "skpm-build",
+    "sketch:watch": "skpm-build --watch",
+    "sketch:render:once": "skpm-build --run",
+    "test:web": "BABEL_ENV=test:web jest --config=./test/jest.config.web.js",
+    "test:native": "BABEL_ENV=test:native jest --config=./test/jest.config.native.js",
+    "webpack": "webpack-dev-server --config ./web/webpack.dev-server.js --open --inline --hot",
+    "webpack:build": "webpack --config ./web/webpack.dev-server.js",
+    "express": "export PORT=3000 && babel-node server/index.js",
+    "lint": "eslint .",
+    "precommit": "lint-staged",
+    "flow": "flow"
+  },
+  "lint-staged": {
+    "*.js": [
+      "flow focus-check",
+      "eslint --config ./.eslintrc.precommit",
+      "npm run test:native -- --bail --findRelatedTests",
+      "npm run test:web -- --bail --findRelatedTests"
+    ]
+  },
+  "skpm": {
+    "main": "react-native-web-sketch-boilerplate.sketchplugin",
+    "manifest": "sketch/manifest.json"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit"
+    }
+  }
+}

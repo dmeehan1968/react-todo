@@ -1,0 +1,6 @@
+/web/**
+/test/**
+/webpack.skpm.config.js
+/*.sketchplugin/**
+/dist/**
+/flow-typed/**
