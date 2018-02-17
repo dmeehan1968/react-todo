@@ -1,5 +1,5 @@
 {
-  "name": "react-native-web-sketch-boilerplate",
+  "name": "react-todo",
   "author": "",
   "license": "ISC",
   "version": "1.0.0",
@@ -73,7 +73,7 @@
     ]
   },
   "skpm": {
-    "main": "react-native-web-sketch-boilerplate.sketchplugin",
+    "main": "react-todo.sketchplugin",
     "manifest": "sketch/manifest.json"
   },
   "husky": {
