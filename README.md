@@ -4,6 +4,14 @@ A demo project to explore React development.
 
 Based on [react-native-web-sketch-boilerplate](https://github.com/dmeehan1968/react-native-web-sketch-boilerplate).  See there for details on the finer points of the setup.
 
+## Goals
+
+1. To explore React API's when targeting multiple platforms.  
+2. The application is intended to share as much code a possible between
+platforms, be that Native on iOS or Android, or Browsers on the web.
+3. The application should be responsive to viewport changes regardless of
+4. platform, and its UI should be adaptive to the accepted standard for each
+platform.
 
 ## Utilising
 
