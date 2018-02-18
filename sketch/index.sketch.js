@@ -54,7 +54,6 @@ const ViewPort = ({ device, children }: {device: string, children?: React.Node})
   </View>
 )
 
-const noop = () => undefined
 const projects: Array<Project> = [
   {
     id: 0,
@@ -91,7 +90,6 @@ export default () => {
             <ThemeProvider theme={theme}>
               <StyledProjectList
                 projects={projects}
-                onPress={noop}
               />
             </ThemeProvider>
           </ViewPort>
