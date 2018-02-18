@@ -2,8 +2,9 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
-export default (Component: React.ComponentType<any>) => (
-  class StyledComponent extends React.Component<React.ElementProps<typeof Component>> {
+export default function StyledComponent<T: React.ComponentType<any>> (Component: T): React.ComponentType<React.ElementConfig<T>> {
+
+  return class StyledComponent extends React.Component<React.ElementProps<typeof Component>> {
     static displayName = 'Styled' + (Component.displayName || Component.name || 'Component')
 
     static contextTypes = {
@@ -22,4 +23,6 @@ export default (Component: React.ComponentType<any>) => (
         <Component {...otherProps} style={[this.getStyle(), style]} />
           )}
     }
-)
+}
+
+// export default StyledComponent
