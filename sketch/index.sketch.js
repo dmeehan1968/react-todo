@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import { render, Artboard, Document, Page, View, Text, StyleSheet } from 'react-sketchapp'
-import { ThemeProvider, StyledComponent } from '../src/Theme'
+import { ThemeProvider, themedComponent } from '../src/Theme'
 import ProjectList from '../src/Project/ProjectList'
 import type { Project } from '../src/types'
 
@@ -79,7 +79,7 @@ const theme = {
 
 
 
-const StyledProjectList = StyledComponent(ProjectList)
+const StyledProjectList = themedComponent(ProjectList)
 
 export default () => {
   render((

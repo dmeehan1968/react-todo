@@ -2,9 +2,9 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
-export default function StyledComponent<T: React.ComponentType<any>> (Component: T): React.ComponentType<React.ElementConfig<T>> {
+export default function themedComponent<T: React.ComponentType<any>> (Component: T): React.ComponentType<React.ElementConfig<T>> {
 
-  return class StyledComponent extends React.Component<React.ElementProps<typeof Component>> {
+  return class ThemedComponent extends React.Component<React.ElementProps<typeof Component>> {
     static displayName = 'Styled' + (Component.displayName || Component.name || 'Component')
 
     static contextTypes = {
@@ -24,5 +24,3 @@ export default function StyledComponent<T: React.ComponentType<any>> (Component:
           )}
     }
 }
-
-// export default StyledComponent
