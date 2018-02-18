@@ -14,7 +14,7 @@ export default class ThemeProvider extends React.Component<ThemeProviderProps> {
   }
 
   static childContextTypes = {
-    theme: PropTypes.string,
+    theme: PropTypes.object,
   }
 
   render() {
