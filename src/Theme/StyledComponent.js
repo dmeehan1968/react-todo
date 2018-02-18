@@ -18,10 +18,10 @@ export default (Component: React.ComponentType<any>) => (
 
     getStyle = () => this.context.theme[this.constructor.getStyleName()]
 
-    render = () => (
-        <Component {...this.props} style={this.getStyle()}>
-          {this.props.children}
-        </Component>
-      )
+    render = () => {
+      const { style, ...otherProps} = this.props
+      return (
+        <Component {...otherProps} style={[this.getStyle(), style]} />
+          )}
     }
 )
