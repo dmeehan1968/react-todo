@@ -4,4 +4,5 @@
 //
 // Export your root component as the default export for this module
 
-export { default } from '../demo/Demo'
+export { View as default } from 'react-native'
+// export { default } from '../demo/Demo'
