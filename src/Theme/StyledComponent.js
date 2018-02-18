@@ -6,10 +6,10 @@ export default (Component: React.ComponentType<any>) => (
 
   //eslint-disable-next-line react/prefer-stateless-function, react/no-multi-comp
   class extends React.Component<React.ElementProps<typeof Component>> {
-    static displayName = 'Styled' + (Component.displayName || 'Component')
+    static displayName = 'Styled' + (Component.displayName || Component.name || 'Component')
 
     static contextTypes = {
-      theme: PropTypes.string,
+      theme: PropTypes.object,
     }
 
     static getStyleName() {
