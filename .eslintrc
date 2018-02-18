@@ -3,6 +3,7 @@
   "parser": "babel-eslint",
   "extends": ["react-native", "plugin:jest/recommended", "plugin:flowtype/recommended"],
   "rules": {
+    "comma-dangle": ["error", "always-multiline"],
     "react/no-multi-comp": "warn",
     "no-invalid-this": "off",
     "babel/no-invalid-this": "error",

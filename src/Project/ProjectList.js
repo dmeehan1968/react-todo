@@ -14,6 +14,7 @@ type Props = {
   projects: Array<Project>,
   onPress: ProjectPressHandler,
   style?: StyleSheet.StyleProp,
+  itemStyle?: StyleSheet.StyleProp,
 }
 
 export default class ProjectList extends React.Component<Props> {

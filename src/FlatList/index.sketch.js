@@ -48,7 +48,7 @@ export default class FlatList extends React.Component<Props> {
     ? [
         this.renderComponentOrElement(this.props.ListHeaderComponent),
         this.renderListItems(),
-        this.renderComponentOrElement(this.props.ListFooterComponent)
+        this.renderComponentOrElement(this.props.ListFooterComponent),
       ]
     : null
   )
@@ -67,7 +67,7 @@ export default class FlatList extends React.Component<Props> {
       </View>
     ))
   )
-  
+
   render = () => (
     <View
       name={this.props.name || "FlatList"}

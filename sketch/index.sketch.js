@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
   text: {
 
-  }
+  },
 })
 
 const ViewPort = ({ device, children }: {device: string, children?: React.Node}) => (
@@ -65,7 +65,7 @@ const projects: Array<Project> = [
     id: 1,
     title: 'Shopping',
     tasks: [],
-  }
+  },
 ]
 
 const theme = {
@@ -75,7 +75,7 @@ const theme = {
   },
   ProjectListItem: {
 
-  }
+  },
 }
 
 
