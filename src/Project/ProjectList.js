@@ -5,6 +5,7 @@ import {
   StyleSheet,
 } from 'react-native'
 
+import FlatList from '../FlatList'
 import type { Project, ProjectPressHandler } from '../types'
 
 type Props = {
@@ -19,8 +20,20 @@ export default class ProjectList extends React.Component<Props> {
     onPress: () => undefined,
   }
 
+  renderItem = (project: Project) => (
+  )
+
+  keyExtractor = (project: Project): string => project.id.toString()
+
   render() {
     return (
+      <FlatList
+        name="ProjectList"
+        style={this.props.style}
+        data={this.props.projects}
+        renderItem={this.renderItem}
+        keyExtractor={this.keyExtractor}
+      />
     )
   }
 }
