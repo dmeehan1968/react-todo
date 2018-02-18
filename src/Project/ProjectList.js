@@ -7,6 +7,7 @@ import {
 
 import FlatList from '../FlatList'
 import type { Project, ProjectPressHandler } from '../types'
+import ProjectListItem from './ProjectListItem'
 import ProjectListEmpty from './ProjectListEmpty'
 
 type Props = {
@@ -22,6 +23,11 @@ export default class ProjectList extends React.Component<Props> {
   }
 
   renderItem = (project: Project) => (
+    <ProjectListItem
+      {...project}
+      style={this.props.itemStyle}
+      onPress={this.props.onPress}
+    />
   )
 
   keyExtractor = (project: Project): string => project.id.toString()
