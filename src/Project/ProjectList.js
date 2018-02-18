@@ -7,6 +7,7 @@ import {
 
 import FlatList from '../FlatList'
 import type { Project, ProjectPressHandler } from '../types'
+import ProjectListEmpty from './ProjectListEmpty'
 
 type Props = {
   projects: Array<Project>,
@@ -33,6 +34,7 @@ export default class ProjectList extends React.Component<Props> {
         data={this.props.projects}
         renderItem={this.renderItem}
         keyExtractor={this.keyExtractor}
+        ListEmptyComponent={ProjectListEmpty}
       />
     )
   }
