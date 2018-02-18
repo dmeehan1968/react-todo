@@ -1,6 +1,9 @@
 // @flow
 import * as React from 'react'
 import { render, Artboard, Document, Page, View, Text, StyleSheet } from 'react-sketchapp'
+import { ThemeProvider, StyledComponent } from '../src/Theme'
+import ProjectList from '../src/Project/ProjectList'
+import type { Project } from '../src/types'
 
 /* eslint-disable react-native/no-color-literals */
 /* eslint-disable react-native/no-unused-styles */
@@ -50,16 +53,56 @@ const ViewPort = ({ device, children }: {device: string, children?: React.Node})
     </View>
   </View>
 )
+
+const noop = () => undefined
+const projects: Array<Project> = [
+  {
+    id: 0,
+    title: 'Inbox',
+    tasks: [],
+  },
+  {
+    id: 1,
+    title: 'Shopping',
+    tasks: [],
+  }
+]
+
+const theme = {
+  ProjectList: {
+    flexGrow: 1,
+    // itemStyle: { /* same as ProjectListItem */ }
+  },
+  ProjectListItem: {
+
+  }
+}
+
+
+
+const StyledProjectList = StyledComponent(ProjectList)
+
 export default () => {
   render((
     <Document style={styles.document}>
       <Page style={styles.page}>
         <Artboard name="Project List" style={styles.artboard}>
           <ViewPort device="iPhoneX">
+            <ThemeProvider theme={theme}>
+              <StyledProjectList
+                projects={projects}
+                onPress={noop}
+              />
+            </ThemeProvider>
           </ViewPort>
         </Artboard>
         <Artboard name="Empty Project List" style={styles.artboard}>
           <ViewPort device="iPhoneX">
+            <ThemeProvider theme={theme}>
+              <StyledProjectList
+                projects={[]}
+              />
+            </ThemeProvider>
           </ViewPort>
         </Artboard>
       </Page>
