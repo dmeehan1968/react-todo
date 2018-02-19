@@ -18,9 +18,10 @@ module.exports = function(config) {
       // add convenience transforms for ES7 syntax
       rule.use.options = rule.use.options || {}
       rule.use.options.plugins = (rule.use.options.plugins || []).concat([
+        'flow-react-proptypes',
         'transform-runtime',
         'transform-class-properties',
-        'transform-function-bind'
+        'transform-function-bind',
       ])
 
       // enable source maps
