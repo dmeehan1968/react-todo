@@ -8,38 +8,56 @@ type ThemeProviderProps = {
   children?: React.Node
 }
 
-//eslint-disable-next-line react/prefer-stateless-function
 export default class ThemeProvider extends React.Component<ThemeProviderProps> {
+
+  _theme: { [key: string]: StyleSheet.Styles }
+
   getChildContext() {
     return {
-      theme: this.props.theme,
       themeProvider: this,
     }
   }
 
   static childContextTypes = {
-    theme: PropTypes.object,
     themeProvider: PropTypes.object,
   }
 
-  getComponentName = (Component: React.ComponentType<any>): string => (
-    Component.displayName || Component.name || 'Component'
-  )
+  constructor(props: Object, context: any) {
+    super(props, context)
+    this._cacheTheme(this.props.theme)
+  }
 
-  getStyles = (Component: React.ComponentType<any>): Object | void => {
-    const name = this.getComponentName(Component)
-    const propKeys = Object.keys(Component.propTypes || {})
+  componentWillReceiveProps = (newProps: Object) => {
+    this._cacheTheme(newProps.theme)
+  }
+
+  _cacheTheme = (theme: StyleSheet.Styles) => {
     const reducer = (acc, key) => {
-      if (/style$/i.test(key)) {
-        const value = key.length === 5 ? this.props.theme[name] : this.props.theme[[name,key].join('.')]
-        return typeof value !== 'undefined'
-          ? { ...acc,[key]: value }
-          : acc
+      if (/^[^.]+$/.test(key)) {
+        return { ...acc, [key]: this._getStylesForString(key) }
       }
       return acc
     }
-    return propKeys.reduce(reducer, {})
+    this._theme = Object.keys(theme).reduce(reducer, {})
   }
+
+  _getStylesForString = (name: string): Object => {
+    const regex = new RegExp(`^(${name})(?:\\.(.+))?$`, 'i')
+    const reducer = (acc, key) => {
+      const match = key.match(regex)
+      if (match) {
+        const styleName = match[2]? match[2] : 'style'
+        return { ...acc, [styleName]: this.props.theme[key]}
+      }
+      return acc
+    }
+
+    return Object.keys(this.props.theme).reduce(reducer, {})
+  }
+
+  getStyles = (Component: React.ComponentType<any>): Object => (
+    this._theme[Component.displayName || Component.name || 'Component']
+  )
 
   render() {
     return this.props.children
