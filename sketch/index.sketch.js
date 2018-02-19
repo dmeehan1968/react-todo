@@ -67,17 +67,15 @@ const projects: Array<Project> = [
   },
 ]
 
-const theme = {
+const theme = StyleSheet.create({
   ProjectList: {
     flexGrow: 1,
-    // itemStyle: { /* same as ProjectListItem */ }
+    // backgroundColor: 'red',
   },
-  ProjectListItem: {
-
+  'ProjectList.itemStyle': {
+    // backgroundColor: 'blue',
   },
-}
-
-
+})
 
 const StyledProjectList = themedComponent(ProjectList)
 
