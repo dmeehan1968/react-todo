@@ -32,9 +32,17 @@ export default class ThemeProvider extends React.Component<ThemeProviderProps> {
   }
 
   _cacheTheme = (theme: StyleSheet.Styles) => {
+    const regexp = /^([^.]+)(?:\.(.+))?$/
     const reducer = (acc, key) => {
-      if (/^[^.]+$/.test(key)) {
-        return { ...acc, [key]: this._getStylesForString(key) }
+      const matches = key.match(regexp)
+      if (matches) {
+        if (acc[matches[1]]) {
+          return acc
+        }
+        const styles = this._getStylesForString(matches[1])
+        if (styles) {
+          return { ...acc, [matches[1]]: styles }
+        }
       }
       return acc
     }
@@ -46,7 +54,7 @@ export default class ThemeProvider extends React.Component<ThemeProviderProps> {
     const reducer = (acc, key) => {
       const match = key.match(regex)
       if (match) {
-        const styleName = match[2]? match[2] : 'style'
+        const styleName = match[2] ? match[2] : 'style'
         return { ...acc, [styleName]: this.props.theme[key]}
       }
       return acc
@@ -56,7 +64,7 @@ export default class ThemeProvider extends React.Component<ThemeProviderProps> {
   }
 
   getStyles = (Component: React.ComponentType<any>): Object => (
-    this._theme[Component.displayName || Component.name || 'Component']
+    this._theme[Component.displayName || Component.name || 'Component'] || {}
   )
 
   render() {
