@@ -1,12 +1,13 @@
 // @flow
 import * as React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import type { Project, ProjectPressHandler } from '../types'
+import { StyledTableViewCell } from '../UI/TableView/TableViewCell'
 
 type Props = Project & {
   onPress: ProjectPressHandler,
   style?: StyleSheet.StyleProp,
-  textStyle?: StyleSheet.StyleProp,
+  titleTextStyle?: StyleSheet.StyleProp,
 }
 
 export default class ProjectListItem extends React.Component<Props> {
@@ -20,18 +21,20 @@ export default class ProjectListItem extends React.Component<Props> {
   }
 
   render() {
+    const computedProps = {}
+    if (this.props.tasks.length) {
+      computedProps.subTitle = `${this.props.tasks.length} overdue`
+    }
+
     return (
-      <View
+      <StyledTableViewCell
         name="ProjectListItem"
         style={this.props.style}
+        titleTextStyle={this.props.titleTextStyle}
         onPress={this.handlePress}
-      >
-        <Text
-          style={this.props.textStyle}
-        >
-          {this.props.title}
-        </Text>
-      </View>
+        title={this.props.title}
+        {...computedProps}
+      />
     )
   }
 }

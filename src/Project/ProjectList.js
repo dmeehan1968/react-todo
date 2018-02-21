@@ -9,6 +9,8 @@ import FlatList from '../FlatList'
 import type { Project, ProjectPressHandler } from '../types'
 import ProjectListItem from './ProjectListItem'
 import ProjectListEmpty from './ProjectListEmpty'
+import { themedComponent } from '../Theme'
+const StyledProjectListItem = themedComponent(ProjectListItem)
 
 type Props = {
   projects: Array<Project>,
@@ -24,9 +26,10 @@ export default class ProjectList extends React.Component<Props> {
   }
 
   renderItem = (project: Project) => (
-    <ProjectListItem
+    <StyledProjectListItem
       {...project}
       style={this.props.itemStyle}
+      titleTextStyle={{ color: project.color || 'black' }}
       onPress={this.props.onPress}
     />
   )

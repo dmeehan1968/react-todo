@@ -57,12 +57,44 @@ const ViewPort = ({ device, children }: {device: string, children?: React.Node})
 const projects: Array<Project> = [
   {
     id: 0,
-    title: 'Inbox',
-    tasks: [],
+    title: 'Beach Vacation',
+    tasks: [
+      {
+        id: 0,
+        title: 'Buy Beach Ball',
+      },
+    ],
+    color: 'blue',
   },
   {
     id: 1,
-    title: 'Shopping',
+    title: 'Home',
+    tasks: [],
+    color: 'green',
+  },
+  {
+    id: 2,
+    title: 'Kids',
+    tasks: [],
+  },
+  {
+    id: 3,
+    title: 'Birthday Party',
+    tasks: [],
+  },
+  {
+    id: 4,
+    title: 'Groceries',
+    tasks: [],
+  },
+  {
+    id: 5,
+    title: 'Finance',
+    tasks: [],
+  },
+  {
+    id: 6,
+    title: 'Reminders',
     tasks: [],
   },
 ]
@@ -72,8 +104,16 @@ const theme = StyleSheet.create({
     flexGrow: 1,
     // backgroundColor: 'red',
   },
-  'ProjectList.itemStyle': {
+  'TableViewCell': {
     // backgroundColor: 'blue',
+    justifyContent: 'center',
+    padding: 10,
+  },
+  'TableViewCell.titleTextStyle': {
+    fontSize: 24,
+  },
+  'TableViewCell.subTitleTextStyle': {
+    // color: '#aaa',
   },
 })
 
