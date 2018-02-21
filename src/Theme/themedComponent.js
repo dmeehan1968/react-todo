@@ -13,12 +13,27 @@ export default function themedComponent<T: React.ComponentType<any>> (Component:
       return Component.displayName || Component.name || 'Component'
     }
 
-    render = () => {
+    combineProps = () => {
       const styles = this.context.themeProvider.getStyles(Component)
-      const { style: componentStyle, ...otherProps} = this.props
-      const { style: themeStyle, ...otherStyles } = styles
-      return (
-        <Component {...otherProps} style={[themeStyle, componentStyle]} {...otherStyles} />
-          )}
+
+      return Object.keys(this.props).reduce((memo, propName) => {
+        if (styles[propName]) {
+          const prop = Array.isArray(styles[propName]) ? styles[propName] : [ styles[propName] ]
+          if (Array.isArray(memo[propName])) {
+            memo[propName].forEach(v => prop.push(v))
+          } else if (memo[propName]) {
+            prop.push(memo[propName])
+          }
+          return {
+            ...memo,
+            [propName]: prop,
+            }
+        }
+        return memo
+      }, this.props)
+
     }
+
+    render = () => (<Component {...this.combineProps()} />)
+  }
 }
