@@ -15,8 +15,14 @@ export default function themedComponent<T: React.ComponentType<any>> (Component:
 
     combineProps = () => {
       const styles = this.context.themeProvider.getStyles(Component)
+      const keys = Object.keys(this.props).concat(Object.keys(styles))
+      const deduplicate = (memo, key) => {
+        const matching = other => other === key
 
-      return Object.keys(this.props).reduce((memo, propName) => {
+        return memo.find(matching) ? memo : [ ...memo, key ]
+      }
+
+      return keys.reduce(deduplicate, []).reduce((memo, propName) => {
         if (styles[propName]) {
           const prop = Array.isArray(styles[propName]) ? styles[propName] : [ styles[propName] ]
           if (Array.isArray(memo[propName])) {
@@ -33,7 +39,6 @@ export default function themedComponent<T: React.ComponentType<any>> (Component:
       }, this.props)
 
     }
-
     render = () => (<Component {...this.combineProps()} />)
   }
 }
