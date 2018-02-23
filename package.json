@@ -16,7 +16,7 @@
     "react-sketchapp": "^1.0.0"
   },
   "devDependencies": {
-    "@skpm/builder": "^0.4.1",
+    "@skpm/builder": "file:../skpm/packages/builder",
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-react-native-web": "^0.5.1",
