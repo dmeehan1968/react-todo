@@ -107,13 +107,34 @@ const theme = StyleSheet.create({
   'TableViewCell': {
     // backgroundColor: 'blue',
     justifyContent: 'center',
-    padding: 10,
+    padding: 8,
+    flexDirection: 'row',
+  },
+  'TableViewCell.primaryActionStyle': {
+    flexGrow: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  'TableViewCell.titleViewStyle': {
+    flexDirection: 'column',
   },
   'TableViewCell.titleTextStyle': {
-    fontSize: 24,
+    fontSize: 22,
+    fontFamily: 'SF Pro Display',
   },
   'TableViewCell.subTitleTextStyle': {
-    // color: '#aaa',
+    fontFamily: 'SF Pro Display',
+  },
+  'TableViewCell.disclosureIndicatorTextStyle': {
+    fontSize: 22,
+    color: '#ccc',
+  },
+  'TableViewCell.imageViewStyle': {
+    marginRight: 8,
+  },
+  'TableViewCell.imageStyle': {
+    width: 44,
+    height: 44,
   },
 })
 

@@ -33,6 +33,7 @@ export default class ProjectListItem extends React.Component<Props> {
         titleTextStyle={this.props.titleTextStyle}
         onPress={this.handlePress}
         title={this.props.title}
+        imageUrl={require('./img.png')}
         {...computedProps}
       />
     )
