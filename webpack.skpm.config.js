@@ -15,6 +15,7 @@ module.exports = function(config) {
   config.module.rules = config.module.rules.map(function(rule) {
     if (rule.use.loader === 'babel-loader') {
 
+      rule.exclude = /(node_modules|..\/react-sketchapp)/
       // add convenience transforms for ES7 syntax
       rule.use.options = rule.use.options || {}
       rule.use.options.plugins = (rule.use.options.plugins || []).concat([
