@@ -30,7 +30,7 @@ const babelLoaderConfiguration = {
       plugins: [
         'react-hot-loader/babel',
         'react-native-web',
-        'transform-function-bind'],
+      ],
       // The 'react-native' preset is recommended to match React Native's packager
       presets: ['react-native'],
       // Source Maps
