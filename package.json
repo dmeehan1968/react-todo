@@ -26,6 +26,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-native": "^4.0.0",
     "canvas-prebuilt": "^1.6.5-prerelease.1",
+    "check-prop-types": "^1.1.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
@@ -58,8 +59,8 @@
     "sketch:build": "skpm-build",
     "sketch:watch": "skpm-build --watch",
     "sketch:render:once": "skpm-build --run",
-    "test:web": "BABEL_ENV=test:web jest --config=./test/jest.config.web.js",
-    "test:native": "BABEL_ENV=test:native jest --config=./test/jest.config.native.js",
+    "test:web": "BABEL_ENV=test:web NODE_ENV=test jest --config=./test/jest.config.web.js",
+    "test:native": "BABEL_ENV=test:native NODE_ENV=test jest --config=./test/jest.config.native.js",
     "webpack": "webpack-dev-server --config ./web/webpack.dev-server.js --open --inline --hot",
     "webpack:build": "webpack --config ./web/webpack.dev-server.js",
     "express": "export PORT=3000 && babel-node server/index.js",
@@ -69,9 +70,9 @@
   },
   "lint-staged": {
     "*.js": [
+      "npm run test:native -- --bail --findRelatedTests",
       "flow focus-check",
-      "eslint --config ./.eslintrc.precommit",
-      "npm run test:native -- --bail --findRelatedTests"
+      "eslint --config ./.eslintrc.precommit"
     ]
   },
   "skpm": {

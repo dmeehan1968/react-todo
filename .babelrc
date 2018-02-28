@@ -1,6 +1,6 @@
 {
   "presets": ["env", "react", "react-native", "flow"],
-  "plugins": [["flow-react-proptypes", { "ignoreNodeModules": true, "useStatic": true }]],
+  "plugins": [["flow-react-proptypes", { "ignoreNodeModules": true, "useStatic": false }]],
   "env": {
     "test:web": {
       "plugins": [

@@ -1,0 +1,233 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableViewCell accessoryType supports checkmark 1`] = `
+<View
+  name="TableViewCell"
+  onPress={[Function]}
+>
+  <View
+    name="primaryAction"
+  >
+    <View
+      name="titleView"
+    >
+      <View
+        name="title"
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+        >
+          My Title
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    name="secondaryAction"
+  />
+</View>
+`;
+
+exports[`TableViewCell accessoryType supports detail 1`] = `
+<View
+  name="TableViewCell"
+  onPress={[Function]}
+>
+  <View
+    name="primaryAction"
+  >
+    <View
+      name="titleView"
+    >
+      <View
+        name="title"
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+        >
+          My Title
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    name="secondaryAction"
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      ⓘ
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`TableViewCell accessoryType supports disclosure 1`] = `
+<View
+  name="TableViewCell"
+  onPress={[Function]}
+>
+  <View
+    name="primaryAction"
+  >
+    <View
+      name="titleView"
+    >
+      <View
+        name="title"
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+        >
+          My Title
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    name="secondaryAction"
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      &gt;
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`TableViewCell accessoryType supports disclosureDetail 1`] = `
+<View
+  name="TableViewCell"
+  onPress={[Function]}
+>
+  <View
+    name="primaryAction"
+  >
+    <View
+      name="titleView"
+    >
+      <View
+        name="title"
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+        >
+          My Title
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    name="secondaryAction"
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      ⓘ
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      &gt;
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`TableViewCell accessoryType supports none 1`] = `
+<View
+  name="TableViewCell"
+  onPress={[Function]}
+>
+  <View
+    name="primaryAction"
+  >
+    <View
+      name="titleView"
+    >
+      <View
+        name="title"
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+        >
+          My Title
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`TableViewCell subtitle renders 1`] = `
+<View
+  name="TableViewCell"
+  onPress={[Function]}
+>
+  <View
+    name="primaryAction"
+  >
+    <View
+      name="titleView"
+    >
+      <View
+        name="title"
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+        >
+          My Title
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`TableViewCell title renders title 1`] = `
+<View
+  name="TableViewCell"
+  onPress={[Function]}
+>
+  <View
+    name="primaryAction"
+  >
+    <View
+      name="titleView"
+    >
+      <View
+        name="title"
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+        >
+          My Title
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
