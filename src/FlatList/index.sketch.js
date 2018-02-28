@@ -4,7 +4,7 @@ import * as React from 'react'
 import { View, StyleSheet } from 'react-native'
 
 type Item = any
-type RenderItemFunction = (item: Item) => React$Element<any>
+type RenderItemFunction = (item: Item) => React.Element<any>
 type KeyExtractorFunction = (item: Item, index: number) => string
 
 type Props = {
