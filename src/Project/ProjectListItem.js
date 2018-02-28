@@ -2,7 +2,11 @@
 import * as React from 'react'
 import { StyleSheet } from 'react-native'
 import type { Project, ProjectPressHandler } from '../types'
-import { StyledTableViewCell } from '../UI/TableView/TableViewCell'
+import { themedComponent } from '../Theme'
+import {
+  StyledTableViewCell,
+  TableViewCellAccessoryTypes,
+} from '../UI/TableView/TableViewCell'
 
 type Props = Project & {
   onPress: ProjectPressHandler,
@@ -20,7 +24,7 @@ export default class ProjectListItem extends React.Component<Props> {
     this.props.onPress(this.props.id)
   }
 
-  render() {
+  render = (): React.Node => {
     const computedProps = {}
     if (this.props.tasks.length) {
       computedProps.subTitle = `${this.props.tasks.length} overdue`
@@ -33,9 +37,12 @@ export default class ProjectListItem extends React.Component<Props> {
         titleTextStyle={this.props.titleTextStyle}
         onPress={this.handlePress}
         title={this.props.title}
+        accessoryType={TableViewCellAccessoryTypes.detailDisclosure}
         imageUrl={require('./img.png')}
         {...computedProps}
       />
     )
   }
 }
+
+export const StyledProjectListItem = themedComponent(ProjectListItem)

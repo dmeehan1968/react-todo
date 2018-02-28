@@ -7,10 +7,9 @@ import {
 
 import FlatList from '../FlatList'
 import type { Project, ProjectPressHandler } from '../types'
-import ProjectListItem from './ProjectListItem'
-import ProjectListEmpty from './ProjectListEmpty'
+import { StyledProjectListItem } from './ProjectListItem'
+import { StyledProjectListEmpty} from './ProjectListEmpty'
 import { themedComponent } from '../Theme'
-const StyledProjectListItem = themedComponent(ProjectListItem)
 
 type Props = {
   projects: Array<Project>,
@@ -44,8 +43,10 @@ export default class ProjectList extends React.Component<Props> {
         data={this.props.projects}
         renderItem={this.renderItem}
         keyExtractor={this.keyExtractor}
-        ListEmptyComponent={ProjectListEmpty}
+        ListEmptyComponent={StyledProjectListEmpty}
       />
     )
   }
 }
+
+export const StyledProjectList = themedComponent(ProjectList)

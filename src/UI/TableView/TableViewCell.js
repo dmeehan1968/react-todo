@@ -11,12 +11,42 @@ import {
   themedComponent,
 } from '../../Theme'
 
+// type Uri = string
+//
+// type ImageSource = {
+//   uri: Uri,
+//   height?: number,
+//   width?: number,
+// }
+//
+//
+// type Props2 = {
+//   avatar?: Uri | ImageSource | React.Node,
+//   text: string | React.Node,
+//   secondaryText?: string | React.Node,
+//   disclosureIndicator?: boolean,
+//   icon?: Uri | ImageSource | React.Node,
+// }
+//
+//
+//
+export const TableViewCellAccessoryTypes = {
+  none: 'none',
+  disclosure: 'disclosure',
+  detail: 'detail',
+  detailDisclosure: 'detailDisclosure',
+  checkmark: 'checkmark',
+}
+
+type TableViewCellAccessoryType = $Keys<typeof TableViewCellAccessoryTypes>
+
 type Props = {
   name?: string,
   title: string,
   subTitle?: ?string,
-  onPress: () => void,
-  disclosureIndicator?: boolean,
+  onPress?: () => void,
+  accessoryType?: TableViewCellAccessoryType,
+  // accessoryType?: 'none' | 'detail' | 'detailDisclosure' | 'disclosure' | 'checkmark',
   imageUrl?: string,
 
   style?: StyleSheet.StyleProp,
@@ -27,13 +57,19 @@ type Props = {
   subTitleStyle?: StyleSheet.StyleProp,
   subTitleTextStyle?: StyleSheet.StyleProp,
   secondaryActionStyle?: StyleSheet.StyleProp,
-  disclosureIndicatorTextStyle?: StyleSheet.StyleProp,
+  disclosureAccessoryTextStyle?: StyleSheet.StyleProp,
+  detailAccessoryTextStyle?: StyleSheet.StyleProp,
   imageViewStyle?: StyleSheet.StyleProp,
   imageStyle?: StyleSheet.StyleProp,
 }
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class TableViewCell extends React.Component<Props> {
+
+  static defaultProps = {
+    accessoryType: TableViewCellAccessoryTypes.none,
+    onPress: () => undefined,
+  }
 
   renderPrimaryAction = () => (
     <View
@@ -79,7 +115,7 @@ export default class TableViewCell extends React.Component<Props> {
   }
 
   renderSecondaryAction = () => {
-    if (!this.props.disclosureIndicator) {
+    if (this.props.accessoryType === TableViewCellAccessoryTypes.none) {
       return
     }
 
@@ -88,22 +124,31 @@ export default class TableViewCell extends React.Component<Props> {
         name="secondaryAction"
         style={this.props.secondaryActionStyle}
       >
+        {this.renderDetailIndicator()}
         {this.renderDisclosureIndicator()}
       </View>
     )
   }
 
   renderDisclosureIndicator = () => {
-    if (!this.props.disclosureIndicator) {
+    if (this.props.accessoryType !== TableViewCellAccessoryTypes.disclosure
+    && this.props.accessoryType !== TableViewCellAccessoryTypes.detailDisclosure) {
       return
     }
 
     return (
-      <Text
-        style={this.props.disclosureIndicatorTextStyle}
-      >
-        &gt;
-      </Text>
+      <Text style={this.props.disclosureAccessoryTextStyle}>&gt;</Text>
+    )
+  }
+
+  renderDetailIndicator = () => {
+    if (this.props.accessoryType !== TableViewCellAccessoryTypes.detail
+    && this.props.accessoryType !== TableViewCellAccessoryTypes.detailDisclosure) {
+      return
+    }
+
+    return (
+      <Text style={this.props.detailAccessoryTextStyle}>{'\u24D8'}</Text>
     )
   }
 

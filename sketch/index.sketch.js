@@ -1,8 +1,8 @@
 // @flow
 import * as React from 'react'
 import { render, Artboard, Document, Page, View, Text, StyleSheet } from 'react-sketchapp'
-import { ThemeProvider, themedComponent } from '../src/Theme'
-import ProjectList from '../src/Project/ProjectList'
+import { ThemeProvider } from '../src/Theme'
+import { StyledProjectList } from '../src/Project/ProjectList'
 import type { Project } from '../src/types'
 
 /* eslint-disable react-native/no-color-literals */
@@ -115,6 +115,10 @@ const theme = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  'TableViewCell.secondaryActionStyle': {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   'TableViewCell.titleViewStyle': {
     flexDirection: 'column',
   },
@@ -125,9 +129,14 @@ const theme = StyleSheet.create({
   'TableViewCell.subTitleTextStyle': {
     fontFamily: 'SF Pro Display',
   },
-  'TableViewCell.disclosureIndicatorTextStyle': {
+  'TableViewCell.disclosureAccessoryTextStyle': {
     fontSize: 22,
     color: '#ccc',
+    marginLeft: 8,
+  },
+  'TableViewCell.detailAccessoryTextStyle': {
+    fontSize: 22,
+    color: 'cornflowerblue',
   },
   'TableViewCell.imageViewStyle': {
     marginRight: 8,
@@ -136,9 +145,18 @@ const theme = StyleSheet.create({
     width: 44,
     height: 44,
   },
-})
+  'ProjectListEmpty': {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  'ProjectListEmpty.textStyle': {
+    fontSize: 30,
+    color: '#aaa',
+    fontFamily: 'SF Pro Display',
 
-const StyledProjectList = themedComponent(ProjectList)
+  },
+})
 
 export default () => {
   render((
