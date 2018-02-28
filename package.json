@@ -71,8 +71,7 @@
     "*.js": [
       "flow focus-check",
       "eslint --config ./.eslintrc.precommit",
-      "npm run test:native -- --bail --findRelatedTests",
-      "npm run test:web -- --bail --findRelatedTests"
+      "npm run test:native -- --bail --findRelatedTests"
     ]
   },
   "skpm": {
