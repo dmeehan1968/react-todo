@@ -1,16 +1,17 @@
 // @flow
 import React from 'react'
-import checkPropTypes from 'check-prop-types'
+import { Text, View, StyleSheet } from 'react-native'
 import { shallow, ShallowWrapper, type EnzymeSelector } from 'enzyme'
 import toJson from 'enzyme-to-json'
+import checkPropTypes from 'check-prop-types'
 
-import TableViewCell, { TableViewCellAccessoryTypes } from './TableViewCell'
+import TableViewCell from './TableViewCell'
 
 class SUT {
   wrapper: ShallowWrapper
 
-  constructor(props: {}) {
-    this.wrapper = shallow(<TableViewCell title="My Title" {...props} />)
+  constructor(props?: {}) {
+    this.wrapper = shallow(<TableViewCell primaryAction={<View />} {...props} />)
   }
 
   find(selector: EnzymeSelector): ShallowWrapper {
@@ -24,97 +25,59 @@ class SUT {
 
 describe('TableViewCell', () => {
 
-  describe('title', () => {
+  describe('properties', () => {
 
-    it('is required', () => {
+    describe('name', () => {
 
-      const result = checkPropTypes(TableViewCell.propTypes, {}, 'prop', TableViewCell.name)
-      expect(result).toContain('The prop `title` is marked as required in `TableViewCell`, but its value is `undefined`')
-
-    })
-
-    it('renders', () => {
-      const sut = new SUT({ title: 'My Title' })
-      expect(sut.toJSON()).toMatchSnapshot()
-    })
-  })
-
-  describe('subtitle', () => {
-    it('renders', () => {
-      const sut = new SUT({ subtitle: 'My Subtitle' })
-      expect(sut.toJSON()).toMatchSnapshot()
-    })
-  })
-
-  describe('primaryAction', () => {
-    it('press', () => {
-      const onPress = jest.fn()
-      const sut = new SUT({ onPress })
-      sut.find('[name="primaryAction"]').simulate('press')
-      expect(onPress).toHaveBeenCalledTimes(1)
-    })
-  })
-
-  describe('accessoryType', () => {
-    it('supports none', () => {
-      const sut = new SUT({ accessoryType: TableViewCellAccessoryTypes.none })
-      expect(sut.toJSON()).toMatchSnapshot()
-    })
-
-    describe('disclosure', () => {
-
-      it('press', () => {
-        const onPress = jest.fn()
-        const sut = new SUT({
-          accessoryType: TableViewCellAccessoryTypes.disclosure,
-          onDisclosurePress: onPress,
-        })
-        sut.find('[name="disclosureIndicator"]').simulate('press')
-        expect(onPress).toHaveBeenCalledTimes(1)
+      it('has a default name', () => {
+        const sut = new SUT()
+        expect(sut.find(`[name="TableViewCell"]`)).toBeDefined()
       })
 
-    })
-
-    describe('detail', () => {
-      it('press', () => {
-        const onPress = jest.fn()
-        const sut = new SUT({
-          accessoryType: TableViewCellAccessoryTypes.detail,
-          onDetailPress: onPress,
-        })
-        sut.find('[name="detailIndicator"]').simulate('press')
-        expect(onPress).toHaveBeenCalledTimes(1)
+      it('can be renamed', () => {
+        const name = 'My Name'
+        const sut = new SUT({ name })
+        expect(sut.find(`[name="${name}"]`)).toBeDefined()
       })
     })
 
-    describe('disclosureDetail', () => {
+    describe('style', () => {
 
-      let onDisclosurePress
-      let onDetailPress
-      let sut
-
-      beforeEach(() => {
-        onDisclosurePress = jest.fn()
-        onDetailPress = jest.fn()
-        sut = new SUT({
-          accessoryType: TableViewCellAccessoryTypes.detailDisclosure,
-          onDisclosurePress,
-          onDetailPress,
-        })
+      it('has no default style', () => {
+        const sut = new SUT()
+        expect(sut.find('[name="TableViewCell"]').prop('style')).toBeUndefined()
       })
 
-      it('disclosure press', () => {
-        sut.find('[name="disclosureIndicator"]').simulate('press')
-        expect(onDisclosurePress).toHaveBeenCalledTimes(1)
-        expect(onDetailPress).toHaveBeenCalledTimes(0)
+      it('can be styled with object literal', () => {
+        const style = { flex: 1 }
+        const sut = new SUT({ style })
+        expect(sut.find('[name="TableViewCell"]').prop('style')).toEqual(style)
       })
 
-      it('detail press', () => {
-        sut.find('[name="detailIndicator"]').simulate('press')
-        expect(onDetailPress).toHaveBeenCalledTimes(1)
-        expect(onDisclosurePress).toHaveBeenCalledTimes(0)
+      it('can be styled with stylesheet', () => {
+        const style = StyleSheet.create({ flex: 1 })
+        const sut = new SUT({ style })
+        expect(sut.find('[name="TableViewCell"]').prop('style')).toEqual(style)
+      })
+
+      it('can be styled with array', () => {
+        const style = [ StyleSheet.create({ flex: 1 }), { flexGrow: 1} ]
+        const sut = new SUT({ style })
+        expect(sut.find('[name="TableViewCell"]').prop('style')).toEqual(style)
       })
     })
 
+    describe('primaryAction', () => {
+
+      it('is required', () => {
+        expect(checkPropTypes(TableViewCell.propTypes, {}, 'props', TableViewCell.name))
+          .toContain('The props `primaryAction` is marked as required in `TableViewCell`, but its value is `undefined`')
+      })
+
+      it('renders', () => {
+        const sut = new SUT({ primaryAction: <Text name="helloWorld">Hello World</Text> })
+        expect(sut.find('Text[name="helloWorld"]').children().text()).toEqual('Hello World')
+      })
+    })
   })
 })

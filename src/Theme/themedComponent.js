@@ -37,8 +37,8 @@ export default function themedComponent<T: React.ComponentType<any>> (Component:
         }
         return memo
       }, this.props)
-
     }
+
     render = () => (<Component {...this.combineProps()} />)
   }
 }
