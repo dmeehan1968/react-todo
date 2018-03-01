@@ -45,6 +45,8 @@ type Props = {
   title: string,
   subTitle?: ?string,
   onPress?: () => void,
+  onDisclosurePress?: () => void,
+  onDetailPress?: () => void,
   accessoryType?: TableViewCellAccessoryType,
   // accessoryType?: 'none' | 'detail' | 'detailDisclosure' | 'disclosure' | 'checkmark',
   imageUrl?: string,
@@ -69,11 +71,14 @@ export default class TableViewCell extends React.Component<Props> {
   static defaultProps = {
     accessoryType: TableViewCellAccessoryTypes.none,
     onPress: () => undefined,
+    onDisclosurePress: () => undefined,
+    onDetailPress: () => undefined,
   }
 
   renderPrimaryAction = () => (
     <View
       name="primaryAction"
+      onPress={this.props.onPress}
       style={this.props.primaryActionStyle}
     >
       {this.renderImage()}
@@ -137,7 +142,13 @@ export default class TableViewCell extends React.Component<Props> {
     }
 
     return (
-      <Text style={this.props.disclosureAccessoryTextStyle}>&gt;</Text>
+      <Text
+        name="disclosureIndicator"
+        style={this.props.disclosureAccessoryTextStyle}
+        onPress={this.props.onDisclosurePress}
+      >
+        &gt;
+      </Text>
     )
   }
 
@@ -148,7 +159,13 @@ export default class TableViewCell extends React.Component<Props> {
     }
 
     return (
-      <Text style={this.props.detailAccessoryTextStyle}>{'\u24D8'}</Text>
+      <Text
+        name="detailIndicator"
+        style={this.props.detailAccessoryTextStyle}
+        onPress={this.props.onDetailPress}
+      >
+        {'\u24D8'}
+      </Text>
     )
   }
 
@@ -170,7 +187,6 @@ export default class TableViewCell extends React.Component<Props> {
   render = () => (
     <View
       name={this.props.name || 'TableViewCell'}
-      onPress={this.props.onPress}
       style={this.props.style}
     >
       {this.renderPrimaryAction()}
