@@ -8,34 +8,6 @@ import {
 import { themedComponent } from '../../Theme'
 import combineStyles from '../../utils/combineStyles'
 
-// type Uri = string
-//
-// type ImageSource = {
-//   uri: Uri,
-//   height?: number,
-//   width?: number,
-// }
-//
-//
-// type Props2 = {
-//   primaryAction: React.Node,
-//   secondaryAction: React.Node,
-// }
-//
-// <TableViewCell
-//   primaryAction={
-//     <TableViewCellSingleLine
-//       text={this.props.text}
-//       onPress={this.props.onPress}
-//     />
-//   }
-//   secondaryAction={
-//     <TableViewCellDisclosureIndicator
-//       onPress={this.props.onDisclosurePress}
-//     />
-//   }
-// />
-//
 type Props = {
   name?: string,
   style?: StyleSheet.StyleProp,
