@@ -56,18 +56,27 @@ export default class ThemeProvider extends React.Component<ThemeProviderProps> {
     this._theme = Object.keys(theme).reduce(makeThemeFromComponentStyles, {})
   }
 
-  _getStylesForString = (name: string): Object => {
-    const regex = new RegExp(`^(${name})(?:\\.(.+))?$`, 'i')
-    const reducer = (acc, key) => {
-      const match = key.match(regex)
+  _getStylesForString = (componentName: string): Object => {
+
+    const regex = new RegExp([
+      '^',                    // start
+      `(?:${componentName})`, // match but don't capture component name
+      '(?:\\.',               // don't capture the dot
+        '(.+)',               // capture substyle name
+      ')?',                   // optional '.substyle'
+      '$',                    // end
+    ].join(''), 'i')          // ignore case
+
+    const collectStyleAndSubstylesForComponent = (styles, key) => {
+      const [match , substyleName] = key.match(regex) || []
       if (match) {
-        const styleName = match[2] ? match[2] : 'style'
-        return { ...acc, [styleName]: this.props.theme[key]}
+        const styleName = substyleName || 'style'
+        return { ...styles, [styleName]: this.props.theme[key]}
       }
-      return acc
+      return styles
     }
 
-    return Object.keys(this.props.theme).reduce(reducer, {})
+    return Object.keys(this.props.theme).reduce(collectStyleAndSubstylesForComponent, {})
   }
 
   getStyles = (Component: React.ComponentType<any>): Object => (
