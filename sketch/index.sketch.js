@@ -115,7 +115,7 @@ export default () => {
               <Sample title="Single Line, Text Only">
                 <StyledTableView
                   name="singleLineTextOnly"
-                  data={Array(8).fill({}).map((item, index) => ({ id: index, title:'Single Line Text' }))}
+                  data={Array(8).fill({}).map((item, index) => ({ id: index, title:'Single line item' }))}
                   renderPrimaryAction={renderSingleLine}
                 />
               </Sample>
@@ -123,7 +123,7 @@ export default () => {
                 <StyledTableView
                   name="singleCompactLineTextOnly"
                   compact
-                  data={Array(8).fill({}).map((item, index) => ({ id: index, title:'Single Line Text' }))}
+                  data={Array(8).fill({}).map((item, index) => ({ id: index, title:'Single line item' }))}
                   renderPrimaryAction={renderSingleLine}
                 />
               </Sample>
@@ -134,7 +134,7 @@ export default () => {
               <Sample title="Single Line, Text Only">
                 <StyledTableView
                   name="singleLineTextOnly"
-                  data={Array(8).fill({}).map((item, index) => ({ id: index, title:'Single Line Text' }))}
+                  data={Array(8).fill({}).map((item, index) => ({ id: index, title:'Single line item' }))}
                   renderPrimaryAction={renderSingleLine}
                 />
               </Sample>
@@ -142,7 +142,7 @@ export default () => {
                 <StyledTableView
                   name="singleCompactLineTextOnly"
                   compact
-                  data={Array(8).fill({}).map((item, index) => ({ id: index, title:'Single Line Text' }))}
+                  data={Array(8).fill({}).map((item, index) => ({ id: index, title:'Single line item' }))}
                   renderPrimaryAction={renderSingleLine}
                 />
               </Sample>
