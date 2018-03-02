@@ -17,13 +17,16 @@ type Props = {
   compactStyle?: StyleSheet.StyleProp,
   textStyle?: StyleSheet.StyleProp,
   compactTextStyle?: StyleSheet.StyleProp,
+  secondaryText?: string | React.Node,
+  secondaryTextStyle?: StyleSheet.StyleProp,
+  compactSecondaryTextStyle?: StyleSheet.StyleProp,
 }
 
 // eslint-disable-next-line react/prefer-stateless-function
-export default class TableViewCellSingleLine extends React.Component<Props> {
+export default class TableViewCellTwoLine extends React.Component<Props> {
 
   static defaultProps = {
-    name: 'TableViewCellSingleLine',
+    name: 'TableViewCellTwoLine',
   }
 
   render = (): React.Node => (
@@ -31,13 +34,19 @@ export default class TableViewCellSingleLine extends React.Component<Props> {
       name={this.props.name}
       style={combineStyles(this.props.style, this.props.compact && this.props.compactStyle)}
     >
-      <Text
-        style={combineStyles(this.props.textStyle, this.props.compact && this.props.compactTextStyle)}
-      >
+      <Text style={combineStyles(this.props.textStyle, this.props.compact && this.props.compactTextStyle)}>
         {this.props.children}
       </Text>
+      {typeof this.props.secondaryText === 'string'
+        ? (
+          <Text style={combineStyles(this.props.secondaryTextStyle, this.props.compact && this.props.compactSecondaryTextStyle)}>
+            {this.props.secondaryText}
+          </Text>
+        )
+        : (this.props.secondaryText)
+      }
     </View>
   )
 }
 
-export const StyledTableViewCellSingleLine = themedComponent(TableViewCellSingleLine)
+export const StyledTableViewCellTwoLine = themedComponent(TableViewCellTwoLine)
