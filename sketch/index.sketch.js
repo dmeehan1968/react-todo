@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const theme = StyleSheet.create({
+const theme = {
   TableView: {
     paddingVertical: 8,
     paddingHorizontal: 16,
@@ -54,6 +54,8 @@ const theme = StyleSheet.create({
   },
   'TableViewCellSingleLine.compactStyle': {
     height: 40,
+  },
+  'TableViewCellSingleLine.compactTextStyle': {
     fontSize: 13,
   },
   TableViewCellTwoLine: {
@@ -80,7 +82,7 @@ const theme = StyleSheet.create({
   'TableViewCellTwoLine.compactSecondaryTextStyle': {
     fontSize: 13,
   },
-})
+}
 
 const Sample = ({ title, children, width = 375}: { title: string, children: React.Node, width?: number }) => (
   <View name="Sample" style={styles.sample}>
@@ -106,46 +108,67 @@ const renderTwoLine = (item: any, compact: boolean) => (
 
 export default () => {
   render((
-    <ThemeProvider theme={theme}>
       <Document style={styles.document}>
         <Page style={styles.page}>
-          <Artboard name="TableViewCell" style={styles.artboard}>
-            <Sample title="Single Line, Text Only">
-              <StyledTableView
-                name="singleLineTextOnly"
-                data={Array(8).fill({}).map((item, index) => ({ id: index, title:'Single Line Text' }))}
-                renderPrimaryAction={renderSingleLine}
-              />
-            </Sample>
-            <Sample title="Single Line, Compact, Text Only">
-              <StyledTableView
-                name="singleCompactLineTextOnly"
-                compact
-                data={Array(8).fill({}).map((item, index) => ({ id: index, title:'Single Line Text' }))}
-                renderPrimaryAction={renderSingleLine}
-              />
-            </Sample>
-          </Artboard>
-          <Artboard name="TableViewCell" style={styles.artboard}>
-            <Sample title="Two Line, Text Only">
-              <StyledTableView
-                name="twoLineTextOnly"
-                data={Array(8).fill({}).map((item, index) => ({ id: index, title:'Two Line Text', secondaryText: 'Secondary Text' }))}
-                renderPrimaryAction={renderTwoLine}
-              />
-            </Sample>
-            <Sample title="Two Line, Compact, Text Only">
-              <StyledTableView
-                name="twoLineCompactTextOnly"
-                compact
-                data={Array(8).fill({}).map((item, index) => ({ id: index, title:'Two Line Text', secondaryText: 'Secondary Text' }))}
-                renderPrimaryAction={renderTwoLine}
-              />
-            </Sample>
-          </Artboard>
+          <ThemeProvider theme={theme}>
+            <Artboard name="TableViewCell Normal" style={styles.artboard}>
+              <Sample title="Single Line, Text Only">
+                <StyledTableView
+                  name="singleLineTextOnly"
+                  data={Array(8).fill({}).map((item, index) => ({ id: index, title:'Single Line Text' }))}
+                  renderPrimaryAction={renderSingleLine}
+                />
+              </Sample>
+              <Sample title="Single Line, Compact, Text Only">
+                <StyledTableView
+                  name="singleCompactLineTextOnly"
+                  compact
+                  data={Array(8).fill({}).map((item, index) => ({ id: index, title:'Single Line Text' }))}
+                  renderPrimaryAction={renderSingleLine}
+                />
+              </Sample>
+            </Artboard>
+          </ThemeProvider>
+          <ThemeProvider theme={theme} fontScale='huge'>
+            <Artboard name="TableViewCell Huge" style={styles.artboard}>
+              <Sample title="Single Line, Text Only">
+                <StyledTableView
+                  name="singleLineTextOnly"
+                  data={Array(8).fill({}).map((item, index) => ({ id: index, title:'Single Line Text' }))}
+                  renderPrimaryAction={renderSingleLine}
+                />
+              </Sample>
+              <Sample title="Single Line, Compact, Text Only">
+                <StyledTableView
+                  name="singleCompactLineTextOnly"
+                  compact
+                  data={Array(8).fill({}).map((item, index) => ({ id: index, title:'Single Line Text' }))}
+                  renderPrimaryAction={renderSingleLine}
+                />
+              </Sample>
+            </Artboard>
+          </ThemeProvider>
+          <ThemeProvider theme={theme}>
+            <Artboard name="TableViewCell" style={styles.artboard}>
+              <Sample title="Two Line, Text Only">
+                <StyledTableView
+                  name="twoLineTextOnly"
+                  data={Array(8).fill({}).map((item, index) => ({ id: index, title:'Two Line Text', secondaryText: 'Secondary Text' }))}
+                  renderPrimaryAction={renderTwoLine}
+                />
+              </Sample>
+              <Sample title="Two Line, Compact, Text Only">
+                <StyledTableView
+                  name="twoLineCompactTextOnly"
+                  compact
+                  data={Array(8).fill({}).map((item, index) => ({ id: index, title:'Two Line Text', secondaryText: 'Secondary Text' }))}
+                  renderPrimaryAction={renderTwoLine}
+                />
+              </Sample>
+            </Artboard>
+          </ThemeProvider>
         </Page>
       </Document>
-    </ThemeProvider>
-  ))
+    ))
 
 }
