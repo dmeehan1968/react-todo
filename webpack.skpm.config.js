@@ -12,6 +12,9 @@ module.exports = function(config) {
   // use cheap source maps
   config.devtool = 'eval-cheap-module-source-map'
 
+  config.watchOptions = config.watchOptions || {}
+  config.watchOptions.ignored = /node_modules|react-sketchapp/
+
   config.module.rules = config.module.rules.map(function(rule) {
     if (rule.use.loader === 'babel-loader') {
 
