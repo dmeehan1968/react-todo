@@ -58,14 +58,14 @@ export default class ThemeProvider extends React.Component<Props> {
 
   constructor(props: Object, context: any) {
     super(props, context)
-    this._cacheTheme(this.props.theme)
+    this._cacheTheme(this.props.theme, this.props.fontScale)
   }
 
   componentWillReceiveProps = (newProps: Object) => {
-    this._cacheTheme(newProps.theme)
+    this._cacheTheme(newProps.theme, newProps.fontScale)
   }
 
-  _cacheTheme = (theme: StyleSheet.Styles) => {
+  _cacheTheme = (theme: StyleSheet.Styles, fontScaleName: string) => {
 
     const componentNameAndSubStylesRegex = new RegExp([
       '^',            // start
@@ -87,9 +87,17 @@ export default class ThemeProvider extends React.Component<Props> {
       }
       return memo
     }
+
     this._rawTheme = { ...theme }
-    this._compiledTheme = ThemeProvider._scaleFonts(Object.keys(theme).reduce(makeThemeFromComponentStyles, {}),
-      fontScaleMap[this.props.fontScale] || 1)
+
+    // compile the theme to make access faster
+    this._compiledTheme = Object.keys(theme).reduce(makeThemeFromComponentStyles, {})
+
+    // scale fonts if fontScale is not == 1
+    const fontScale = fontScaleMap[fontScaleName] || 1
+    if (fontScale !== 1) {
+      this._compiledTheme = ThemeProvider._scaleFonts(this._compiledTheme, fontScale)
+    }
   }
 
   static _scaleFonts(originalTheme: CompiledTheme, fontScale: number): CompiledTheme {
